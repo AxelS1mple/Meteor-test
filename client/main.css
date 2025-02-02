@@ -1,0 +1,157 @@
+/* Restablecer márgenes y padding globales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Cuerpo de la página */
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #fff;
+  color: #fff;
+  line-height: 1.6;
+  font-size: 16px;
+  margin-top: 60px; 
+}
+
+/* Encabezado fijo */
+header {
+  background-color: #222;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que el header quede encima del contenido */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del header */
+header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Navegación */
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+nav ul li {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #f06;
+  transform: translateY(-2px);
+}
+
+/* Migas de pan */
+.breadcrumbs {
+  margin: 20px 0;
+  font-size: 1rem;
+  color: #888;
+}
+
+.breadcrumbs a {
+  color: #333;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: #f06;
+}
+
+/* Contenido principal */
+main {
+  padding: 40px 20px;
+  margin-top: 100px;  /* Asegura que el contenido no quede cubierto por el header fijo */
+  margin-left: -20px;
+  margin-right: -20px;
+  background: linear-gradient(135deg, #4a90e2, #f06);
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Si el contenido excede la pantalla, permitirá el desplazamiento */
+  min-height: 100vh;  /* Asegura que el main ocupe toda la altura de la página */
+}
+
+/* Pie de página fijo */
+footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Asegura que el footer quede encima del contenido */
+}
+
+footer p {
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Estilo para enlaces */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .breadcrumbs {
+    font-size: 0.9rem;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  nav ul li {
+    font-size: 0.9rem;
+  }
+
+  .breadcrumbs {
+    font-size: 0.8rem;
+  }
+}
