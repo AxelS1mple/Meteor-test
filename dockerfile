@@ -13,8 +13,8 @@ COPY . .
 # Instalar dependencias del proyecto
 RUN meteor npm install
 
-# Ejecutar la construcción de Meteor
-RUN meteor build --directory ./build
+# Ejecutar la construcción de Meteor con permisos de superusuario
+RUN meteor build --directory ./build --allow-superuser
 
 # Exponer el puerto en el que se ejecutará la app
 EXPOSE 3000
