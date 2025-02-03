@@ -1,28 +1,31 @@
+# Usar la imagen oficial de Node.js
 FROM node:20
 
-# Crear un usuario no root
+# Crear un usuario no root para ejecutar Meteor
 RUN useradd -m meteoruser
 
-# Instalar Meteor
-RUN curl https://install.meteor.com/ | sh
-
-# Crear y establecer el directorio de trabajo
+# Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copiar los archivos del proyecto
-COPY . .
+# Copiar el archivo de configuración .meteor y el código de la aplicación
+# Se separa la copia del código y de las dependencias para aprovechar el cacheo de Docker
+COPY .meteor .meteor
+COPY package.json package-lock.json ./
 
-# Instalar dependencias del proyecto
-RUN meteor npm install
-
-# Ejecutar la construcción de Meteor
-RUN meteor build --directory ./build --allow-superuser
-
-# Cambiar al usuario no root
+# Cambiar a meteoruser para evitar problemas de permisos
 USER meteoruser
 
-# Exponer el puerto en el que se ejecutará la app
+# Instalar dependencias del proyecto sin usar permisos de root
+RUN meteor npm install
+
+# Copiar el resto del código de la aplicación
+COPY . .
+
+# Construir la aplicación de Meteor
+RUN meteor build --directory ./build --allow-superuser
+
+# Establecer el puerto en el que se ejecutará la aplicación
 EXPOSE 3000
 
-# Comando para iniciar la app
-CMD ["meteor", "run"]
+# Comando para ejecutar la app (usando la construcción de Meteor)
+CMD ["meteor", "run", "--production"]
