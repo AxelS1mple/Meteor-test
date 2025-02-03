@@ -1,5 +1,7 @@
-# Usar una imagen más reciente que incluya las dependencias correctas
 FROM node:20
+
+# Crear un usuario no root
+RUN useradd -m meteoruser
 
 # Instalar Meteor
 RUN curl https://install.meteor.com/ | sh
@@ -13,8 +15,11 @@ COPY . .
 # Instalar dependencias del proyecto
 RUN meteor npm install
 
-# Ejecutar la construcción de Meteor con permisos de superusuario
+# Ejecutar la construcción de Meteor
 RUN meteor build --directory ./build --allow-superuser
+
+# Cambiar al usuario no root
+USER meteoruser
 
 # Exponer el puerto en el que se ejecutará la app
 EXPOSE 3000
