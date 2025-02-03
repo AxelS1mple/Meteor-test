@@ -27,5 +27,5 @@ RUN meteor build --directory ./build --allow-superuser
 # Exponer el puerto en el que se ejecutará la app
 EXPOSE 3000
 
-# Comando para iniciar la app
-CMD ["meteor", "run"]
+# Configurar Meteor para escuchar en 0.0.0.0
+CMD ["meteor", "run", "--port", "3000", "--host", "0.0.0.0"]
