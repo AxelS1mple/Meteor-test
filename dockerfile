@@ -4,6 +4,12 @@ FROM node:20
 # Crear un usuario no root para ejecutar Meteor
 RUN useradd -m meteoruser
 
+# Instalar las dependencias necesarias para instalar Meteor
+RUN apt-get update && apt-get install -y curl
+
+# Instalar Meteor de manera global
+RUN curl https://install.meteor.com/ | sh
+
 # Establecer el directorio de trabajo
 WORKDIR /app
 
@@ -15,7 +21,7 @@ COPY package.json package-lock.json ./
 # Cambiar a meteoruser para evitar problemas de permisos
 USER meteoruser
 
-# Instalar dependencias del proyecto sin usar permisos de root
+# Instalar dependencias del proyecto
 RUN meteor npm install
 
 # Copiar el resto del código de la aplicación
