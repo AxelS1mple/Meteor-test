@@ -1,23 +1,23 @@
-# Usamos una imagen base de Node.js
-FROM node:16
+# Usar una imagen más reciente que incluya las dependencias correctas
+FROM node:20
 
 # Instalar Meteor
 RUN curl https://install.meteor.com/ | sh
 
-# Configuración del directorio de trabajo
+# Crear y establecer el directorio de trabajo
 WORKDIR /app
 
-# Copiar los archivos del proyecto al contenedor
+# Copiar los archivos del proyecto
 COPY . .
 
-# Instalar dependencias de npm
+# Instalar dependencias del proyecto
 RUN meteor npm install
 
-# Construir la aplicación
+# Ejecutar la construcción de Meteor
 RUN meteor build --directory ./build
 
-# Configurar el puerto en el que la aplicación correrá
+# Exponer el puerto en el que se ejecutará la app
 EXPOSE 3000
 
-# Comando para iniciar la aplicación
-CMD ["meteor", "--settings", "settings.json"]
+# Comando para iniciar la app
+CMD ["meteor", "run"]
