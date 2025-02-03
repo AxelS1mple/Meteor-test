@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: meteor-app
+    env: node
+    buildCommand: |
+      curl https://install.meteor.com/ | sh
+      npm install
+      meteor build --directory ./build
+    startCommand: meteor run --production
+    nodeVersion: "18.20.6"
