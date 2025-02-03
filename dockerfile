@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y curl bash
 RUN curl https://install.meteor.com/ | bash
 
 # Agrega Meteor al PATH
-ENV PATH="/root/.meteor:${PATH}"
+ENV PATH="/root/.meteor:/root/.meteor/packages/meteor-tool/current/bin:${PATH}"
 
 # Crea un usuario no root para seguridad
 RUN useradd -m meteoruser
@@ -25,14 +25,14 @@ RUN chown -R meteoruser:meteoruser /app
 # Cambia al usuario meteoruser
 USER meteoruser
 
-# Instala las dependencias
-RUN meteor npm install --unsafe-perm
+# Instala las dependencias del proyecto
+RUN /root/.meteor/meteor npm install --unsafe-perm
 
-# Construye la app Meteor
-RUN meteor build --directory ./build --allow-superuser
+# Construye la aplicación
+RUN /root/.meteor/meteor build --directory ./build --allow-superuser
 
 # Expone el puerto
 EXPOSE 3000
 
 # Inicia la aplicación
-CMD ["meteor", "run", "--port", "0.0.0.0:3000"]
+CMD ["/root/.meteor/meteor", "run", "--port", "0.0.0.0:3000"]
