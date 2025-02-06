@@ -64,8 +64,25 @@ header {
 
 /* Breadcrumbs */
 .breadcrumbs {
-  margin: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre elementos */
+  margin: 10px auto;
+  padding: 8px 16px;
   font-size: 0.9em;
+  color: #333;
+  background: rgba(255, 255, 255, 0.8); /* Fondo sutil */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  width: fit-content;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Efecto de hover para interacción */
+.breadcrumbs:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Contenido principal */
@@ -108,6 +125,11 @@ footer {
     background-color: #333;
     text-align: center;
     padding: 10px 0;
+  }
+
+  .breadcrumbs {
+    font-size: 0.85em;
+    padding: 6px 12px;
   }
 
   .nav-menu.open {

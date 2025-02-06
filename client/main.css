@@ -8,7 +8,6 @@
 /* Cuerpo de la página */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #fff;
   color: #fff;
   line-height: 1.6;
   font-size: 16px;
@@ -18,8 +17,7 @@ body {
 /* Encabezado fijo */
 header {
   background-color: #222;
-  color: #fff;
-  padding: 20px 0;
+  padding: 9px 0;
   text-align: center;
   position: fixed;
   top: 0;
@@ -63,26 +61,9 @@ nav ul li a:hover {
   transform: translateY(-2px);
 }
 
-/* Migas de pan */
-.breadcrumbs {
-  margin: 20px 0;
-  font-size: 1rem;
-  color: #888;
-}
-
-.breadcrumbs a {
-  color: #333;
-  text-decoration: none;
-}
-
-.breadcrumbs a:hover {
-  color: #f06;
-}
-
 /* Contenido principal */
 main {
   padding: 40px 20px;
-  margin-top: 100px;  /* Asegura que el contenido no quede cubierto por el header fijo */
   margin-left: -20px;
   margin-right: -20px;
   background: linear-gradient(135deg, #4a90e2, #f06);
